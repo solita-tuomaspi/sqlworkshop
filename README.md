@@ -3,7 +3,8 @@
 ## Setup
 
 Start the database with `docker-compose-up -d`.
+
 Adminer control panel can be found at http://localhost:8088/.
 
-![Login information](login.png)!
+![Login information](login.png)
 
