@@ -20,13 +20,13 @@ CREATE TABLE product (
 
 CREATE TABLE customerorder (
     id INT PRIMARY KEY,
-    customerid INT REFERENCES customer (id),
+    customerid INT NOT NULL REFERENCES customer (id),
     time TIMESTAMP WITHOUT TIME ZONE NOT NULL
 );
 
 CREATE TABLE orderitem (
-    orderid INT REFERENCES customerorder (id),
-    productcode CHAR(5) REFERENCES product (code),
+    orderid INT NOT NULL REFERENCES customerorder (id),
+    productcode CHAR(5) NOT NULL REFERENCES product (code),
     amount SMALLINT NOT NULL CHECK (amount >= 0),
     PRIMARY KEY (orderid, productcode)
 );
@@ -41,7 +41,8 @@ INSERT INTO customer(name, address, zipcode) VALUES
     ('Teppo Tamppaaja', 'Jokukatu 5', '33100'),
     ('Hannele Helle', 'Tietie 13', '00130'),
     ('Olli Osaaja', 'Luontopolku 99', '90100'),
-    ('Tuula Tuunaaja', 'Kyläraitti 111', '20100');
+    ('Tuula Tuunaaja', 'Kyläraitti 111', '20100'),
+    ('Tiina Tuunaaja', 'Kyläraitti 111', '20100');
 
 INSERT INTO product(code, name, description, price) VALUES
     ('113', 'Hirviö Energia SuperDuper', 'Mahtava Hirviö energiajuoman uusin versio', 1.5),
@@ -59,7 +60,8 @@ INSERT INTO customerorder VALUES
     (5, (SELECT id FROM customer WHERE name = 'Hannele Helle'), TIMESTAMP '2021-01-12 12:34:56'),
     (6, (SELECT id FROM customer WHERE name = 'Hannele Helle'), TIMESTAMP '2021-03-22 12:34:56'),
     (7, (SELECT id FROM customer WHERE name = 'Olli Osaaja'), TIMESTAMP '2021-04-27 12:34:56'),
-    (8, (SELECT id FROM customer WHERE name = 'Tuula Tuunaaja'), TIMESTAMP '2021-04-13 12:34:56');
+    (8, (SELECT id FROM customer WHERE name = 'Tuula Tuunaaja'), TIMESTAMP '2021-04-13 12:34:56'),
+    (9, (SELECT id FROM customer WHERE name = 'Tiina Tuunaaja'), TIMESTAMP '2021-04-14 12:34:56');
 
 INSERT INTO orderitem VALUES
     (1, '113', 10),
@@ -73,4 +75,6 @@ INSERT INTO orderitem VALUES
     (6, '4444', 12),
     (6, '555', 2),
     (7, '113', 14),
-    (8, '668', 20);
+    (8, '668', 20),
+    (9, '555', 10),
+    (9, '4444', 5);
