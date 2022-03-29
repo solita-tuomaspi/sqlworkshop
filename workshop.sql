@@ -45,12 +45,12 @@ INSERT INTO customer(name, address, zipcode) VALUES
     ('Tiina Tuunaaja', 'Kyläraitti 111', '20100');
 
 INSERT INTO product(code, name, description, price) VALUES
-    ('113', 'Hirviö Energia SuperDuper', 'Mahtava Hirviö energiajuoman uusin versio', 1.5),
-    ('555', 'Säästökeksi', 'Halpa ja hyvä', 0.2),
-    ('668', 'Luxus-keksi', 'Kallis ja ok', 5),
-    ('777', 'Pulla', 'Geneerinen pulla', 2),
-    ('4444', 'SosaCola', 'Parasta kolajuomaa', 4),
-    ('42', 'TurboSalmiakki', null, 13);
+    ('113', 'Horror Energy SuperDuper', 'Terrific new version of the Horror Energy drink', 1.5),
+    ('555', 'Cheapo Cookie', 'Cheap and good', 0.2),
+    ('668', 'Luxurious Cookie', 'Expensive and ok', 5),
+    ('777', 'Bun', 'Generic bun', 2),
+    ('4444', 'SosaCola', 'The best cola drink', 4),
+    ('42', 'TurboSalmiac', null, 13);
 
 INSERT INTO customerorder VALUES
     (1, (SELECT id FROM customer WHERE name = 'Teppo Tamppaaja'), TIMESTAMP '2021-03-13 12:34:56'),
