@@ -12,7 +12,7 @@ The database can also be accessed from the command line
 
 ```
 docker exec -it sqlworkshop-db-1 bash
-psql -U academy -W
+psql academy academy
 ```
 The name of the container might also be `sqlworkshop_db_1` depending on your Docker version. You can check it with `docker ps`.
 
