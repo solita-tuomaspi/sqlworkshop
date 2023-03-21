@@ -39,5 +39,5 @@ FROM customerorder cu
 JOIN orderitem oi ON cu.id = oi.orderid
 JOIN product p ON oi.productcode = p.code
 GROUP BY cu.id)
-SELECT id, hinta FROM prices
-WHERE hinta = (SELECT MAX(hinta) FROM prices);
+SELECT id, total FROM prices
+WHERE total = (SELECT MAX(total) FROM prices);
