@@ -6,7 +6,8 @@ SELECT * FROM product WHERE price > 2;
 SELECT name FROM customer WHERE address LIKE '%polku%';
 -- How many order were there in april 2021?
 SELECT COUNT(*) FROM customerorder WHERE time >= '2021-04-01' and time < '2021-05-01';
-SELECT COUNT(*) FROM customerorder WHERE time BETWEEN '2021-04-01' AND '2021-30-01';
+SELECT COUNT(*) FROM customerorder WHERE time BETWEEN '2021-04-01' AND '2021-04-30';
+SELECT COUNT(*) FROM customerorder WHERE EXTRACT(year FROM time) = 2021 AND EXTRACT(month FROM time) = 4;
 -- Select only the latest order
 SELECT * from customerorder ORDER BY time DESC LIMIT 1;
 -- Join customers, orders, ordered products and product information in a query
@@ -32,7 +33,7 @@ JOIN orderitem oi ON cu.id = oi.orderid
 JOIN product p ON oi.productcode = p.code
 GROUP BY c.name, cu.time
 HAVING SUM(oi.amount * p.price) > 50;
--- Select the id and price with the biggest total price
+-- Select the id and price where the total is bigger than the average total price
 WITH prices AS
 (SELECT cu.id, SUM(oi.amount * p.price) AS total
 FROM customerorder cu
@@ -40,4 +41,4 @@ JOIN orderitem oi ON cu.id = oi.orderid
 JOIN product p ON oi.productcode = p.code
 GROUP BY cu.id)
 SELECT id, total FROM prices
-WHERE total = (SELECT MAX(total) FROM prices);
+WHERE total > (SELECT AVG(total) FROM prices);
