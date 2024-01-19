@@ -26,7 +26,7 @@ CREATE TABLE customerorder (
 
 CREATE TABLE orderitem (
     orderid INT NOT NULL REFERENCES customerorder (id),
-    productcode CHAR(5) NOT NULL REFERENCES product (code),
+    productcode VARCHAR(5) NOT NULL REFERENCES product (code),
     amount SMALLINT NOT NULL CHECK (amount >= 0),
     PRIMARY KEY (orderid, productcode)
 );
